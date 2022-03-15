@@ -1,0 +1,78 @@
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 1.2em;
+}
+
+/* Header */
+
+nav {
+    background-color: #00a0df;
+}
+
+nav input[type=text] {
+    border-bottom-color: #fff;
+}
+
+input[type=text]{
+    font-size: 1.5rem;
+}
+
+.brand-logo, .graduate-text {
+    font-family: Graduate, Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Content */
+
+.container {
+    width: 100% !important;
+    max-width: initial !important;
+}
+
+.tab-pane {
+    padding-top: 20px;
+}
+
+.tabs .indicator {
+    background-color: #00a0df;
+}
+
+.modal {
+    top: 5%;
+    max-height: 90%;
+    width: 95%;
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+
+table th.separator, .table td.separator {
+    border-left: 2px solid #ddd;
+}
+
+table th.separator-sm, .table td.separator-sm {
+    border-left: 1px solid #ddd;
+}
+
+table th, table td {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.red-text, .green-text, .blue-text {
+    font-weight: 700;
+}
+
+.material-icons {
+    cursor: pointer;
+}

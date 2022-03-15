@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ghent Ghosts Funhockey Fest</title>
+        <link rel="stylesheet" href="./css/libs/material-icons.css">
+        <link rel="stylesheet" href="./css/libs/graduate.css">
+        <link rel="stylesheet" href="./css/libs/materialize.min.css">
+        <link rel="stylesheet" href="./css/main.css">
+        <script src="./js/libs/modernizr-2.8.3.js"></script>
+    </head>
+    <body>
+        <nav role="navigation">
+            <div class="nav-wrapper">
+                <span class="brand-logo">GHENT GHOSTS FUNHOCKEY FEST</span>
+                <ul class="right hide-on-med-and-down">
+                    <li><input type="text" data-bind="value: durationTimeMinute" style="width: 60px; text-align: center;" value="5" /> : <input type="text" data-bind="value: durationTimeSecond" style="width: 60px; text-align: center;" value="00" /></li>
+                    <li><a data-bind="attr: { href: '#timer' }, event: { click: startTimer }" class="modal-trigger"><i class="material-icons">play_arrow</i></a></li>
+                    <li><a href="#" data-bind="event: { click: stopTimer }"><i class="material-icons">pause</i></a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div data-bind="attr: { id: 'timer' }" class="modal">
+            <div class="modal-content">
+                <p>
+                    <span data-bind="text: diffTimeFull" style="font-size: 20em; font-weight: 700;"></span>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class=" modal-action modal-close waves-effect waves-green btn-flat">CLOSE</a>
+            </div>
+        </div>
+
+        <ul class="tabs">
+            <li class="tab col s3"><a href="#regular" class="active light-blue-text text-accent-2">Regular</a></li>
+            <li class="tab col s3"><a href="#playoffs" class="light-blue-text text-accent-2">Play-offs</a></li>
+            <li class="tab col s3"><a href="#winner" class="light-blue-text text-accent-2">Winner</a></li>
+            <li class="tab col s3"><a href="#settings" class="light-blue-text text-accent-2">Settings</a></li>
+        </ul>
+        <div id="regular" class="col s12">
+            <div class="container body-content" role="main">
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 8%;">&nbsp;</th>
+                            <th colspan="4" class="separator text-center" style="width: 36%;">POND A</th>
+                            <th colspan="4" class="separator text-center" style="width: 36%;">POND B</th>
+                            <th colspan="4" class="separator text-center" style="width: 20%;">TIME</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: regularGames">
+                        <tr>
+                            <td class="text-center inline"><input type="text" data-bind="value: gameTime" style="width: 60px; text-align: center;" tabindex="-1" /></td>
+                            <td class="text-right inline" style="width: 14%;"><span data-bind="text: team1Name, attr: { class: team1Status }"></span></td>
+                            <td class="text-center" style="width: 4%;"><input type="text" data-bind="value: team1Score, event: { change: $parent.updateScoreRegular }" style="width: 50px; text-align: center;" /></td>
+                            <td class="text-center" style="width: 4%;"><input type="text" data-bind="value: team2Score, event: { change: $parent.updateScoreRegular }" style="width: 50px; text-align: center;" /></td>
+                            <td class="inline" style="width: 14%;"><span data-bind="text: team2Name, attr: { class: team2Status }"></span></td>
+                            <td class="text-right inline" style="width: 14%;"><span data-bind="text: team3Name, attr: { class: team3Status }"></span></td>
+                            <td class="text-center" style="width: 4%;"><input type="text" data-bind="value: team3Score, event: { change: $parent.updateScoreRegular }" style="width: 50px; text-align: center;" /></td>
+                            <td class="text-center" style="width: 4%;"><input type="text" data-bind="value: team4Score, event: { change: $parent.updateScoreRegular }" style="width: 50px; text-align: center;" /></td>
+                            <td class="inline" style="width: 14%;"><span data-bind="text: team4Name, attr: { class: team4Status }"></span></td>
+                            <td class="text-center" style="white-space: nowrap;">
+                                <input type="text" data-bind="value: durationTimeMinute" style="width: 50px; text-align: center;" tabindex="-1" /> : <input type="text" data-bind="value: durationTimeSecond" style="width: 50px; text-align: center;" tabindex="-1" />
+                            </td>
+                            <td class="text-center inline"><span data-bind="text: diffTimeFull"></span></td>
+                            <td>
+                                <a data-bind="attr: { href: '#timer' + id() }, event: { click: startTimer }" class="modal-trigger"><i class="material-icons">play_arrow</i></a>
+                                <div data-bind="attr: { id: 'timer' + id() }" class="modal">
+                                    <div class="modal-content">
+                                        <h4>
+                                            POND A : <span data-bind="text: team1Name"></span> vs <span data-bind="text: team2Name"></span><br/>
+                                            POND B : <span data-bind="text: team3Name"></span> vs <span data-bind="text: team4Name"></span>
+                                        </h4>
+                                        <p>
+                                            <span data-bind="text: diffTimeFull" style="font-size: 20em; font-weight: 700;"></span>
+                                        </p>
+                                        <h5>
+                                            NEXT (<span data-bind="text: nextGameTime"></span>)<br/>
+                                            POND A : <span data-bind="text: nextTeam1"></span> vs <span data-bind="text: nextTeam2"></span><br/>
+                                            POND B : <span data-bind="text: nextTeam3"></span> vs <span data-bind="text: nextTeam4"></span>
+                                        </h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#" class=" modal-action modal-close waves-effect waves-green btn-flat">CLOSE</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><a href="#" data-bind="event: { click: stopTimer }"><i class="material-icons">pause</i></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/><br/><br/>
+                <div class="row">
+                    <div class="col s6">
+                        <h3 class="text-center">POND A</h3>
+                        <table class="striped">
+                            <thead>
+                                <tr>
+                                    <th>POS</th>
+                                    <th>TEAM</th>
+                                    <th class="text-center">POINTS</th>
+                                    <th class="text-center">GOALS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tbody data-bind="foreach: teamsPondA">
+                                    <tr>
+                                        <td><span data-bind="text: $index() + 1"></span></td>
+                                        <td><span data-bind="text: name"></span></td>
+                                        <td class="text-center"><span data-bind="text: points"></span></td>
+                                        <td class="text-center"><span data-bind="text: differential"></span></td>
+                                    </tr>
+                                </tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col s6">
+                        <h3 class="text-center">POND B</h3>
+                        <table class="striped">
+                            <thead>
+                                <tr>
+                                    <th>POS</th>
+                                    <th>TEAM</th>
+                                    <th class="text-center">POINTS</th>
+                                    <th class="text-center">GOALS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tbody data-bind="foreach: teamsPondB">
+                                    <tr>
+                                        <td><span data-bind="text: $index() + 1"></span></td>
+                                        <td><span data-bind="text: name"></span></td>
+                                        <td class="text-center"><span data-bind="text: points"></span></td>
+                                        <td class="text-center"><span data-bind="text: differential"></span></td>
+                                    </tr>
+                                </tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="playoffs" class="col s12">
+            <div class="container body-content" role="main">
+                <h4>SEMI FINALS <i class="material-icons" data-bind="event: { click: setSemiFinals }">refresh</i></h4>
+                <div data-bind="visible: isVisibleSemiFinals">
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 8%;">&nbsp;</th>
+                                <th colspan="4" class="separator text-center" style="width: 36%;">POND A</th>
+                                <th colspan="4" class="separator text-center" style="width: 36%;">POND B</th>
+                                <th colspan="4" class="separator text-center" style="width: 20%;">TIME</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center">START</th>
+                                <th colspan="2" class="separator text-center" style="width: 18%;">TEAM 1</th>
+                                <th colspan="2" class="separator-sm text-center" style="width: 18%;">TEAM 2</th>
+                                <th colspan="2" class="separator text-center" style="width: 18%;">TEAM 3</th>
+                                <th colspan="2" class="separator-sm text-center" style="width: 18%;">TEAM 4</th>
+                                <th class="separator text-center">TOTAL</th>
+                                <th class="separator-sm text-center">TIMER</th>
+                                <th colspan="2" class="separator-sm">ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: semiFinalGames">
+                            <tr>
+                                <td class="text-center inline"><input type="text" data-bind="value: gameTime" style="width: 60px; text-align: center;" tabindex="-1" /></td>
+                                <td class="separator text-right inline" style="width: 14%;"><span data-bind="text: team1Name, attr: { class: team1Status }"></span></td>
+                                <td class="text-center" style="width: 4%;"><input type="text" data-bind="value: team1Score, event: { change: $parent.updateScoreSemiFinals }" style="width: 50px; text-align: center;" /></td>
+                                <td class="text-center" style="width: 4%;"><input type="text" data-bind="value: team2Score, event: { change: $parent.updateScoreSemiFinals }" style="width: 50px; text-align: center;" /></td>
+                                <td class="inline" style="width: 14%;"><span data-bind="text: team2Name, attr: { class: team2Status }"></span></td>
+                                <td class="separator text-right inline" style="width: 14%;"><span data-bind="text: team3Name, attr: { class: team3Status }"></span></td>
+                                <td class="text-center" style="width: 4%;"><input type="text" data-bind="value: team3Score, event: { change: $parent.updateScoreSemiFinals }" style="width: 50px; text-align: center;" /></td>
+                                <td class="text-center" style="width: 4%;"><input type="text" data-bind="value: team4Score, event: { change: $parent.updateScoreSemiFinals }" style="width: 50px; text-align: center;" /></td>
+                                <td class="inline" style="width: 14%;"><span data-bind="text: team4Name, attr: { class: team4Status }"></span></td>
+                                <td class="separator text-center" style="white-space: nowrap;">
+                                    <input type="text" data-bind="value: durationTimeMinute" style="width: 50px; text-align: center;" tabindex="-1" /> : <input type="text" data-bind="value: durationTimeSecond" style="width: 50px; text-align: center;" tabindex="-1" />
+                                </td>
+                                <td class="text-center inline"><span data-bind="text: diffTimeFull"></span></td>
+                                <td>
+                                    <a data-bind="attr: { href: '#timer' + id() }, event: { click: startTimer }" class="modal-trigger"><i class="material-icons">play_arrow</i></a>
+                                    <div data-bind="attr: { id: 'timer' + id() }" class="modal">
+                                        <div class="modal-content">
+                                            <h4>
+                                                POND A : <span data-bind="text: team1Name"></span> vs <span data-bind="text: team2Name"></span><br/>
+                                                POND B : <span data-bind="text: team3Name"></span> vs <span data-bind="text: team4Name"></span>
+                                            </h4>
+                                            <p>
+                                                <span data-bind="text: diffTimeFull" style="font-size: 20em; font-weight: 700;"></span>
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="#" class=" modal-action modal-close waves-effect waves-green btn-flat">CLOSE</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><a href="#" button data-bind="event: { click: stopTimer }" ><i class="material-icons">pause</i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <h4>CONSOLIDATION GAME <i class="material-icons" data-bind="event: { click: setFinals }">refresh</i></h4>
+                </div>
+                <div data-bind="visible: isVisibleFinals">
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 8%;">&nbsp;</th>
+                                <th colspan="4" class="separator text-center" style="width: 36%;">POND A</th>
+                                <th colspan="4" class="separator text-center" style="width: 36%;">POND B</th>
+                                <th colspan="4" class="separator text-center" style="width: 20%;">TIME</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center">START</th>
+                                <th colspan="2" class="separator text-center" style="width: 18%;">TEAM 1</th>
+                                <th colspan="2" class="separator-sm text-center" style="width: 18%;">TEAM 2</th>
+                                <th colspan="2" class="separator text-center" style="width: 18%;">TEAM 3</th>
+                                <th colspan="2" class="separator-sm text-center" style="width: 18%;">TEAM 4</th>
+                                <th class="separator text-center">TOTAL</th>
+                                <th class="separator-sm text-center">TIMER</th>
+                                <th colspan="2" class="separator-sm">ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: consolidationGames">
+                            <tr>
+                                <td class="text-center inline"><input type="text" data-bind="value: gameTime" style="width: 60px; text-align: center;" tabindex="-1" /></td>
+                                <td class="separator text-right inline" style="width: 14%;"><span data-bind="text: team1Name, attr: { class: team1Status }"></span></td>
+                                <td class="text-center" style="width: 4%;"><input type="text" data-bind="value: team1Score, event: { change: $parent.updateScoreConsolidationGames }" style="width: 50px; text-align: center;" /></td>
+                                <td class="text-center" style="width: 4%;"><input type="text" data-bind="value: team2Score, event: { change: $parent.updateScoreConsolidationGames }" style="width: 50px; text-align: center;" /></td>
+                                <td class="inline" style="width: 14%;"><span data-bind="text: team2Name, attr: { class: team2Status }"></span></td>
+                                <td class="separator text-right inline" style="width: 14%;"><span data-bind="text: team3Name, attr: { class: team3Status }"></span></td>
+                                <td class="text-center" style="width: 4%;"><input type="text" data-bind="value: team3Score, event: { change: $parent.updateScoreConsolidationGames }" style="width: 50px; text-align: center;" /></td>
+                                <td class="text-center" style="width: 4%;"><input type="text" data-bind="value: team4Score, event: { change: $parent.updateScoreConsolidationGames }" style="width: 50px; text-align: center;" /></td>
+                                <td class="inline" style="width: 14%;"><span data-bind="text: team4Name, attr: { class: team4Status }"></span></td>
+                                <td class="separator text-center" style="white-space: nowrap;">
+                                    <input type="text" data-bind="value: durationTimeMinute" style="width: 50px; text-align: center;" tabindex="-1" /> : <input type="text" data-bind="value: durationTimeSecond" style="width: 50px; text-align: center;" tabindex="-1" />
+                                </td>
+                                <td class="text-center inline"><span data-bind="text: diffTimeFull"></span></td>
+                                <td>
+                                    <a data-bind="attr: { href: '#timer' + id() }, event: { click: startTimer }" class="modal-trigger"><i class="material-icons">play_arrow</i></a>
+                                    <div data-bind="attr: { id: 'timer' + id() }" class="modal">
+                                        <div class="modal-content">
+                                            <h4>
+                                                POND A : <span data-bind="text: team1Name"></span> vs <span data-bind="text: team2Name"></span><br/>
+                                                POND B : <span data-bind="text: team3Name"></span> vs <span data-bind="text: team4Name"></span>
+                                            </h4>
+                                            <p>
+                                                <span data-bind="text: diffTimeFull" style="font-size: 20em; font-weight: 700;"></span>
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="#" class=" modal-action modal-close waves-effect waves-green btn-flat">CLOSE</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><a href="#" data-bind="event: { click: stopTimer }"><i class="material-icons">pause</i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <h4>BRONZE FINALS</h4>
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 8%;">&nbsp;</th>
+                                <th colspan="4" class="separator text-center" style="width: 72%;">POND B</th>
+                                <th colspan="4" class="separator text-center" style="width: 20%;">TIME</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center">START</th>
+                                <th colspan="2" class="separator text-center" style="width: 36%;">TEAM 1</th>
+                                <th colspan="2" class="separator-sm text-center" style="width: 36%;">TEAM 2</th>
+                                <th class="separator text-center">TOTAL</th>
+                                <th class="separator-sm text-center">TIMER</th>
+                                <th colspan="2" class="separator-sm">ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: bronzeFinalGames">
+                            <tr>
+                                <td class="text-center inline"><input type="text" data-bind="value: gameTime" style="width: 60px; text-align: center;" tabindex="-1" /></td>
+                                <td class="separator text-right inline" style="width: 28%;"><span data-bind="text: team1Name, attr: { class: team1Status }"></span></td>
+                                <td class="text-center" style="width: 8%;"><input type="text" data-bind="value: team1Score, event: { change: $parent.updateScoreBronzeFinals }" style="width: 50px; text-align: center;" /></td>
+                                <td class="text-center" style="width: 8%;"><input type="text" data-bind="value: team2Score, event: { change: $parent.updateScoreBronzeFinals }" style="width: 50px; text-align: center;" /></td>
+                                <td class="inline" style="width: 28%;"><span data-bind="text: team2Name, attr: { class: team2Status }"></span></td>
+                                <td class="separator text-center" style="white-space: nowrap;">
+                                    <input type="text" data-bind="value: durationTimeMinute" style="width: 50px; text-align: center;" tabindex="-1" /> : <input type="text" data-bind="value: durationTimeSecond" style="width: 50px; text-align: center;" tabindex="-1" />
+                                </td>
+                                <td class="text-center inline"><span data-bind="text: diffTimeFull"></span></td>
+                                <td>
+                                    <a data-bind="attr: { href: '#timer' + id() }, event: { click: startTimer }" class="modal-trigger"><i class="material-icons">play_arrow</i></a>
+                                    <div data-bind="attr: { id: 'timer' + id() }" class="modal">
+                                        <div class="modal-content">
+                                            <h4>
+                                                POND A : <span data-bind="text: team1Name"></span> vs <span data-bind="text: team2Name"></span><br/>
+                                                POND B : <span data-bind="text: team3Name"></span> vs <span data-bind="text: team4Name"></span>
+                                            </h4>
+                                            <p>
+                                                <span data-bind="text: diffTimeFull" style="font-size: 20em; font-weight: 700;"></span>
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="#" class=" modal-action modal-close waves-effect waves-green btn-flat">CLOSE</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><a href="#" data-bind="event: { click: stopTimer }"><i class="material-icons">pause</i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <h4>GOLD FINALS</h4>
+                    <table class="striped">
+                        <thead>
+                            <tr>
+                                <th style="width: 8%;">&nbsp;</th>
+                                <th colspan="4" class="separator text-center" style="width: 72%;">POND A</th>
+                                <th colspan="4" class="separator text-center" style="width: 20%;">TIME</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center">START</th>
+                                <th colspan="2" class="separator text-center" style="width: 36%;">TEAM 1</th>
+                                <th colspan="2" class="separator-sm text-center" style="width: 36%;">TEAM 2</th>
+                                <th class="separator text-center">TOTAL</th>
+                                <th class="separator-sm text-center">TIMER</th>
+                                <th colspan="2" class="separator-sm">ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: goldFinalGames">
+                            <tr>
+                                <td class="text-center inline"><input type="text" data-bind="value: gameTime" style="width: 60px; text-align: center;" tabindex="-1" /></td>
+                                <td class="separator text-right inline" style="width: 28%;"><span data-bind="text: team1Name, attr: { class: team1Status }"></span></td>
+                                <td class="text-center" style="width: 8%;"><input type="text" data-bind="value: team1Score, event: { change: $parent.updateScoreGoldFinals }" style="width: 50px; text-align: center;" /></td>
+                                <td class="text-center" style="width: 8%;"><input type="text" data-bind="value: team2Score, event: { change: $parent.updateScoreGoldFinals }" style="width: 50px; text-align: center;" /></td>
+                                <td class="inline" style="width: 28%;"><span data-bind="text: team2Name, attr: { class: team2Status }"></span></td>
+                                <td class="separator text-center" style="white-space: nowrap;">
+                                    <input type="text" data-bind="value: durationTimeMinute" style="width: 50px; text-align: center;" tabindex="-1" /> : <input type="text" data-bind="value: durationTimeSecond" style="width: 50px; text-align: center;" tabindex="-1" />
+                                </td>
+                                <td class="text-center inline"><span data-bind="text: diffTimeFull"></span></td>
+                                <td>
+                                    <a data-bind="attr: { href: '#timer' + id() }, event: { click: startTimer }" class="modal-trigger"><i class="material-icons">play_arrow</i></a>
+                                    <div data-bind="attr: { id: 'timer' + id() }" class="modal">
+                                        <div class="modal-content">
+                                            <h4>
+                                                POND A : <span data-bind="text: team1Name"></span> vs <span data-bind="text: team2Name"></span><br/>
+                                                POND B : <span data-bind="text: team3Name"></span> vs <span data-bind="text: team4Name"></span>
+                                            </h4>
+                                            <p>
+                                                <span data-bind="text: diffTimeFull" style="font-size: 20em; font-weight: 700;"></span>
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="#" class=" modal-action modal-close waves-effect waves-green btn-flat">CLOSE</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><a href="#" data-bind="event: { click: stopTimer }"><i class="material-icons">pause</i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                </div>
+            </div>
+        </div>
+        <div id="winner" class="col s12">
+            <div class="container body-content text-center" role="main">
+                <span data-bind="text: winner" class="green-text" style="font-size: 10em;"></span>
+                <br/><br/>
+                <table class="striped">
+                    <thead>
+                        <tr>
+                            <th>TEAM</th>
+                            <th class="text-center">WINS</th>
+                            <th class="text-center">DRAWS</th>
+                            <th class="text-center">LOSSES</th>
+                            <th class="text-center">POINTS</th>
+                            <th class="text-center">GOALS</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: teams">
+                        <tr>
+                            <td><span data-bind="text: name"></span></td>
+                            <td class="text-center"><span data-bind="text: wins"></span></td>
+                            <td class="text-center"><span data-bind="text: draws"></span></td>
+                            <td class="text-center"><span data-bind="text: losses"></span></td>
+                            <td class="text-center"><span data-bind="text: points"></span></td>
+                            <td class="text-center"><span data-bind="text: differential"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="settings" class="col s12">
+            <div class="container body-content" role="main">
+                <table class="striped">
+                    <tbody data-bind="foreach: teams">
+                        <tr>
+                            <td><span data-bind="text: id"></span></td>
+                            <td> <input type="text" data-bind="value: name" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <button data-bind="attr: { class: 'btn waves-effect waves-light ' + submitStatus() }, event: { click: setTeams }">Update teams</button>
+            </div>
+        </div>
+
+        <script>
+            // You can also require other files to run in this process
+            require('./renderer.js')
+
+            var jquery_dirname = __dirname + '/js/libs/jquery-3.1.1.min.js';
+            window.$ = window.jQuery = require(jquery_dirname);
+
+            var hammer_dirname = __dirname + '/js/libs/hammer.min.js';
+            window.Hammer = require(hammer_dirname);
+        </script>
+
+        <script src="./js/libs/materialize.min.js"></script>
+        <script src="./js/libs/knockout-3.4.0.js"></script>
+
+        <script src="./js/app/extensions.js"></script>
+        <script src="./js/app/common.js"></script>
+        <script src="./js/app/models/team.model.js"></script>
+        <script src="./js/app/models/game.model.js"></script>
+        <script src="./js/app/services/general.service.js"></script>
+        <script src="./js/app/services/team.service.js"></script>
+        <script src="./js/app/services/game.service.js"></script>
+        <script src="./js/app/viewmodels/app.viewmodel.js"></script>
+        <script src="./js/app/app.js"></script>
+    </body>
+</html>
