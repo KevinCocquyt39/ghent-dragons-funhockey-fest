@@ -4,11 +4,11 @@ This project is a tournament scoring application, made for 8 teams.
 
 # Getting Started
 
-Install electron
+### Install electron
 
     npm install electron
 
-Start electron
+### Start electron
 
     npm start
 
