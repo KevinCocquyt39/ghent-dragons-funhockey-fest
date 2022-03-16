@@ -1,23 +1,23 @@
 {
-  "name": "ghent_ghosts_funhockey_fest",
-  "version": "1.0.0",
-  "description": "Ghent Ghosts Funhockey Fest Tournament Tracker",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ."
-  },
-  "homepage": "http://www.ghentghosts.be",
-  "email": "info@ghentghosts.be",
-  "keywords": [
-    "Electron",
-    "Ghent",
-    "Ghosts",
-    "Funhockey",
-    "Fest"
-  ],
-  "author": "KevinCocquyt39",
-  "license": "CC0-1.0",
-  "devDependencies": {
-    "electron": "^1.4.1"
-  }
+    "name": "ghent_dragons_funhockey_fest",
+    "version": "2.0.0",
+    "description": "Ghent Dragons Funhockey Fest Tournament Tracker",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron ."
+    },
+    "homepage": "http://www.ghentdragons.be",
+    "email": "info@ghentdragons.be",
+    "keywords": [
+        "Electron",
+        "Ghent",
+        "Dragons",
+        "Funhockey",
+        "Fest"
+    ],
+    "author": "KevinCocquyt39",
+    "license": "CC0-1.0",
+    "devDependencies": {
+        "electron": "^1.4.1"
+    }
 }

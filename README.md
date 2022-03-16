@@ -16,18 +16,30 @@ Start electron
 
 ## Packager
 
-    npm install electron-packager -g (globally install electron packager)
+### Globally install electron packager
 
-    electron-packager . <app> --platform win32 --arch x64 --out dist/ --overwrite (create package)
+    npm install electron-packager -g
+
+### Create package
+
+    electron-packager . <app> --platform win32 --arch x64 --out dist/ --overwrite
 
 ## Installer
 
-    npm install electron-installer-windows -g (globally install electron installer for windows)
+### Globally install electron installer for windows
 
-    electron-installer-windows --src dist/<app>-win32-x64/ --dest dist/installers/ (create installer (.exe))
+    npm install electron-installer-windows -g
 
-!! Make sure 'app' is the same als 'name' in package.json file. when using multiple words, use \_ as separator.
-!! Set homepage in package.json file, otherwise you get a 'URI not found' during the creation of the installer.
+### Create installer (.exe)
+
+    electron-installer-windows --src dist/<app>-win32-x64/ --dest dist/installers/
+
+## Important
+
+-   Make sure 'app' is the same als 'name' in package.json file. when using multiple words, use \_ as separator.
+-   Set homepage in package.json file, otherwise you get a 'URI not found' during the creation of the installer.
+
+## Obsolete?
 
 Installer for windows store (http://electron.atom.io/docs/tutorial/windows-store-guide/)
 

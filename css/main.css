@@ -9,19 +9,20 @@
 /* Header */
 
 nav {
-    background-color: #00a0df;
+    background-color: #0e4d72;
 }
 
-nav input[type=text] {
+nav input[type="text"] {
     border-bottom-color: #fff;
 }
 
-input[type=text]{
+input[type="text"] {
     font-size: 1.5rem;
 }
 
-.brand-logo, .graduate-text {
-    font-family: Graduate, Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+.brand-logo,
+.graduate-text {
+    font-family: Graduate, Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /* Content */
@@ -48,15 +49,18 @@ input[type=text]{
     background-color: black;
 }
 
-table th.separator, .table td.separator {
+table th.separator,
+.table td.separator {
     border-left: 2px solid #ddd;
 }
 
-table th.separator-sm, .table td.separator-sm {
+table th.separator-sm,
+.table td.separator-sm {
     border-left: 1px solid #ddd;
 }
 
-table th, table td {
+table th,
+table td {
     padding-top: 2px;
     padding-bottom: 2px;
 }
@@ -69,7 +73,9 @@ table th, table td {
     text-align: right;
 }
 
-.red-text, .green-text, .blue-text {
+.red-text,
+.green-text,
+.blue-text {
     font-weight: 700;
 }
 
